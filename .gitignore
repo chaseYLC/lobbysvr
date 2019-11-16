@@ -1,5 +1,26 @@
-# Prerequisites
-*.d
+# User solutions
+*.suo
+*.user
+
+*.log
+*.cmake
+
+Makefile
+
+# Debug and Release directories
+Debug/
+Release/
+build/
+.vscode/
+
+CMakeFiles/
+
+# Browsing database
+*.sdf
+*.opensdf
+
+# NuGet packages directory
+packages/
 
 # Compiled Object files
 *.slo
@@ -8,6 +29,7 @@
 *.obj
 
 # Precompiled Headers
+ipch/
 *.gch
 *.pch
 
@@ -18,7 +40,6 @@
 
 # Fortran module files
 *.mod
-*.smod
 
 # Compiled Static libraries
 *.lai
