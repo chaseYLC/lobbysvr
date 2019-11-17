@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  lobbysvr:
+    image: lobbysvr
+docke    build: .
+    ports:
+      - 39000:39000

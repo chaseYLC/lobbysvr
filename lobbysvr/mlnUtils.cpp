@@ -7,7 +7,7 @@
 
 namespace MLN_Utils {
 
-	int64_t getLocalTimeSec()
+	uint64_t getLocalTimeSec()
 	{
 		namespace pt = boost::posix_time;
 		pt::ptime now = boost::posix_time::second_clock::local_time();

@@ -4,7 +4,7 @@
 
 namespace MLN_Utils {
 
-	extern int64_t getLocalTimeSec();
+	extern uint64_t getLocalTimeSec();
 
 	extern std::string MB2UTF8(const char *mbString);
 

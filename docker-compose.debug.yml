@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  lobbysvr:
+    image: lobbysvr
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 39000:39000

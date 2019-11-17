@@ -1,12 +1,9 @@
 ADD_DEFINITIONS(-DBoost_USE_STATIC_LIBS=ON)
 
-set(BOOST_ROOT "/usr/local/Cellar/boost/1.69.0_2")
-#set(BOOST_ROOT "/usr/local/opt/boost@1.60")
+#set(BOOST_ROOT "/usr/local/Cellar/boost/1.69.0_2")
+set(BOOST_ROOT "/usr/local")
 set(Boost_USE_STATIC_LIBS        ON)  # only find static libs
-# set(Boost_USE_DEBUG_LIBS         OFF) # ignore debug libs and
-# set(Boost_USE_RELEASE_LIBS       ON)  # only find release libs
 set(Boost_USE_MULTITHREADED      ON)
-# set(Boost_USE_STATIC_RUNTIME    OFF)
 
 find_package(Boost 1.69.0 COMPONENTS log log_setup system thread REQUIRED)
 #find_package(Boost 1.60.0 COMPONENTS log log_setup system thread REQUIRED)
@@ -47,17 +44,30 @@ if(Boost_FOUND)
     )
 
     # target_link_libraries(lobbysvr /usr/local/mln/lib/libmln.a -static)
+    # target_link_libraries(lobbysvr
+    #     /usr/local/mln/lib/libmln.a
+    #     ${Boost_LIBRARIES}
+    # )
     target_link_libraries(lobbysvr
-        /usr/local/mln/lib/libmln.a
+        mln
         ${Boost_LIBRARIES}
+    )
+
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(JSONCPP jsoncpp)
+    include_directories(${Jsoncpp_INCLUDE_DIR})
+    link_libraries(${JSONCPP_LIBRARIES})
+    target_link_libraries(lobbysvr ${JSONCPP_LIBRARIES})
+
+
+    set_target_properties( lobbysvr
+        PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
     
 elseif()
     message("Boost NOT Found!")
 endif()
 
-
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(JSONCPP jsoncpp)
-link_libraries(${JSONCPP_LIBRARIES})
-target_link_libraries(lobbysvr ${JSONCPP_LIBRARIES})

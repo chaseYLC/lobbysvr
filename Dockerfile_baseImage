@@ -1,0 +1,14 @@
+FROM ubuntu:18.04
+
+RUN apt-get update \
+  && apt-get install -y wget tar gzip g++ gcc pkg-config apt-utils libjsoncpp-dev \
+  && wget --max-redirect 3 https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz \
+  && tar xzvf boost_1_69_0.tar.gz \
+  && cd ./boost_1_69_0 \
+  && ./bootstrap.sh --prefix=/usr/local/ \
+  && ./b2 install \
+  && apt-get -y install clang \
+  && apt-get -y install cmake
+
+
+ 

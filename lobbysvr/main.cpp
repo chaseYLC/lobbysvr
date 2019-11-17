@@ -186,13 +186,9 @@ void setModuleDirToWorkingDir()
 
 	_tchdir(szPathBuffer);
 #elif __linux__
-    char link[50];
-    char path[256] ={0};
-
-    sprintf( link, "/proc/%d/exe", getpid() );
-    readlink( link, path, 256 );
-    printf("path = %s\n", exepath);
-    chdir(exepath);
+	std::string modulePath = boost::filesystem::current_path().string();
+    chdir(modulePath.c_str());
+    std::cout << modulePath;
 #else
     // boost::filesystem::system_complete(argv[0]);
     // chdir(boost::filesystem::current_path());

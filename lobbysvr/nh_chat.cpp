@@ -31,7 +31,7 @@ void nh_chat::sendMsg(MLN::Net::Connection::ptr conn, const std::string &url, Js
 	jv["addition_fromSVR"] = g_idx4Broker;
 	jv["from"] = user->m_userID;
 	jv["seq"] = jv[RSP_SEQ];
-	jv["sendTime"] = MLN_Utils::getLocalTimeSec();
+	jv["sendTime"] = (Json::Value::UInt64)MLN_Utils::getLocalTimeSec();
 
 	// ���Ŀ�� ����.
 	jv["identity"] = (uint32_t)(user->getConn()->getIdentity());

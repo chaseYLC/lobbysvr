@@ -6,6 +6,8 @@
 *.cmake
 
 Makefile
+CMakeCache.txt
+mln/
 
 # Debug and Release directories
 Debug/
