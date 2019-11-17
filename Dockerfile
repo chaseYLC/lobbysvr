@@ -1,7 +1,8 @@
   
 FROM chase81/lobbysvr:base20191116
 
-RUN apt-get install -y pkg-config
+RUN apt-get install -y pkg-config \
+  && apt-get install -y default-libmysqlclient-dev
 
 RUN mkdir -p /usr/src/app/svc_lobbysvr
 
@@ -24,6 +25,7 @@ WORKDIR /usr/src/app/svc_lobbysvr
 RUN ln -s /usr/include/jsoncpp/json/ /usr/include/json
 
 # RUN apt-get -y install clang llvm
+
 
 RUN cmake CMakeLists.txt
 RUN make
