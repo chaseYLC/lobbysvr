@@ -44,6 +44,23 @@ namespace MLN
 			renewExpireTime();
 		}
 
+		boost::shared_ptr< ConnectionImpl > ConnectionImpl::create(NetService* owner
+			, boost::asio::io_service& ios
+			, MessageProcedure *msgProc
+			, EventReceiver *evntReceiver
+			, const size_t keepAliveTimeMs
+			, const size_t connectionID
+		)
+		{
+			return boost::shared_ptr< ConnectionImpl >( new ConnectionImpl(owner
+				, ios
+				, msgProc
+				, evntReceiver
+				, keepAliveTimeMs
+				, connectionID
+				), ConnectionImpl::destruct);
+		}
+
 		void ConnectionImpl::set_status(const status s)
 		{
 			_status = s;

@@ -148,7 +148,7 @@ namespace MLN
 		{
 			using TCP = boost::asio::ip::tcp;
 
-			auto conn = Connection::ptr(new ConnectionImpl(this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, connectionID), ConnectionImpl::destruct);
+			auto conn = ConnectionImpl::create(this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, connectionID);
 			conn->setServiceID(getIndex());
 
 			conn->socket().open((*m_endpoint_iter)->endpoint().protocol());

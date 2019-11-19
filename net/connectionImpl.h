@@ -22,12 +22,22 @@ namespace MLN
 			, public MemoryPool< ConnectionImpl >
 		{
 		public:
+			static boost::shared_ptr< ConnectionImpl > create(NetService* owner
+				, boost::asio::io_service& ios
+				, MessageProcedure *msgProc
+				, EventReceiver *evntReceiver
+				, const size_t keepAliveTimeMs
+				, const size_t connectionID
+			);
+
+		private:
 			ConnectionImpl(NetService* owner, boost::asio::io_service& ios
 				, MessageProcedure *msgProc, EventReceiver *evntReceiver
 				, const size_t keepAliveTimeMs
 				, const size_t connectionID
 				);
-
+		
+		public:
 			void set_status(const status s) override;
 			status get_status() const override;
 			boost::asio::ip::tcp::socket& socket() override;

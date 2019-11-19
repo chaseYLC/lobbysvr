@@ -77,7 +77,7 @@ namespace MLN
 				LOGE << ec.message();
 			}
 
-			auto conn = Connection::ptr(new ConnectionImpl(this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, 0), ConnectionImpl::destruct);
+			auto conn = ConnectionImpl::create(this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, 0);
 			conn->setServiceID(getIndex());
 
 			_acceptorSocket.async_accept(conn->socket(), _strand.wrap(
@@ -97,7 +97,8 @@ namespace MLN
 
 				conn->start_accept();
 
-				auto newConn = Connection::ptr(new ConnectionImpl(this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, 0), ConnectionImpl::destruct);
+				auto newConn = ConnectionImpl::create(
+					this, _ios, _msgProc, &_eventReceiver, _keepAliveTimeMs, 0);
 				newConn->setServiceID(getIndex());
 
 				_acceptorSocket.async_accept(newConn->socket(), _strand.wrap(
