@@ -6,15 +6,14 @@
 #include "connection.h"
 #include "memoryPool.h"
 #include "messageBuffer.h"
-#include "netService.h"
-#include "messageProcedure.h"
 
 namespace MLN
 {
 	namespace Net
 	{
-		class NetService;
 		class EventReceiver;
+		class MessageProcedure;
+		class NetService;
 
 		class ConnectionImpl
 			: public Connection

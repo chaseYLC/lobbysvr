@@ -5,6 +5,7 @@
 #include <boost/bind.hpp>
 #include <boost/asio/write.hpp>
 #include "messageBuffer.h"
+#include "messageProcedure.h"
 #include "netServiceAcceptor.h"
 #include "logger.h"
 
